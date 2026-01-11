@@ -1,4 +1,5 @@
-import { Textarea } from "@headlessui/react";
+import { Textarea } from "@heroui/react";
+
 
 export default function OrderEditModal({
   editOrder,

@@ -1,6 +1,6 @@
 'use client';
 
-import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
+
 import { useState } from 'react';
 
 export default function CreateLandingPageModal() {
@@ -32,7 +32,7 @@ export default function CreateLandingPageModal() {
         Create New Landing Page
       </button>
 
-      <Dialog open={isOpen} as="div" className="relative z-10" onClose={close}>
+      {/* <Dialog open={isOpen} as="div" className="relative z-10" onClose={close}>
         <div className="fixed inset-0 bg-black/30 backdrop-blur-sm" aria-hidden="true" />
         <div className="fixed inset-0 z-10 overflow-y-auto">
           <div className="flex min-h-full items-center justify-center p-4">
@@ -69,7 +69,7 @@ export default function CreateLandingPageModal() {
             </DialogPanel>
           </div>
         </div>
-      </Dialog>
+      </Dialog> */}
     </>
   );
 }

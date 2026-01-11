@@ -6,9 +6,10 @@ import OrderDetailsModal from "../../_components/modals/OrderDetailsModal";
 import { OrderProduct } from "../../_lib/type";
 import toast from "react-hot-toast";
 import OrderEditModal from "../../_components/modals/OrderEditModal";
-import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
+
 import { Copy, Search, Filter, Calendar, Download } from "lucide-react";
 import Link from "next/link";
+import { Button, Popover, PopoverContent } from "@heroui/react";
 
 // Types remain the same as in your original code
 
@@ -432,18 +433,18 @@ export default function InventoryPage() {
                       </td>
                       <td className="p-4">
                         <Popover>
-                          <PopoverButton className="text-left">
+                          <Button className="text-left">
                             <div className="font-medium">
                               {order?.customer?.fullName}
                             </div>
                             <div className="text-sm dark:text-gray-400 text-gray-700">
                               {order?.customer?.mobileNumber}
                             </div>
-                          </PopoverButton>
+                          </Button>
 
-                          <PopoverPanel
-                            transition
-                            anchor="bottom"
+                          <PopoverContent
+                            
+                           
                             className="absolute z-10 mt-2 w-80 rounded-xl bg-white dark:bg-gray-800 border border-gray-700 shadow-lg p-4 transition duration-200 ease-in-out data-closed:opacity-0 data-closed:scale-95"
                           >
                             <div className="space-y-3">
@@ -508,7 +509,7 @@ export default function InventoryPage() {
                                 </div>
                               </div>
                             </div>
-                          </PopoverPanel>
+                          </PopoverContent>
                         </Popover>
                       </td>
                       <td className="p-4">

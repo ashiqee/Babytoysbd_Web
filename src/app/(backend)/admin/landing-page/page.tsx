@@ -1,9 +1,9 @@
 // app/admin/landing-page/page.tsx
 "use client";
 
-import { Button } from "@headlessui/react";
 import { useState } from "react";
 import CreateLandingPageModal from "../../_components/pageBuilder/CreateLandingPageModal";
+import { Button } from "@heroui/react";
 
 
 export default function LandingPageDashboard() {
