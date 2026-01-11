@@ -1,6 +1,7 @@
 "use client"
+import { Share } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { ShareIcon } from '@heroicons/react/24/outline';
+
 
 // Social Media Icons Components
 function FacebookIcon(props:any) {
@@ -119,7 +120,7 @@ export default function ShareButton(product:any) {
         className="flex items-center justify-center w-8 h-8 rounded-full border border-gray-300 text-gray-700 hover:bg-gray-100 transition-colors"
         title="Share product"
       >
-        <ShareIcon className="h-4 w-4" />
+        <Share className="h-4 w-4" />
       </button>
       
       {isShareDropdownOpen && (
@@ -178,7 +179,7 @@ export default function ShareButton(product:any) {
               className="flex flex-col items-center justify-center w-14 h-14 bg-white rounded-full p-1 shadow hover:shadow-md transition-all" 
               title="More share options"
             >
-              <ShareIcon className="h-6 w-6 text-gray-700" />
+              <Share className="h-6 w-6 text-gray-700" />
               <span className="text-xs mt-1">More</span>
             </button>
           </div>

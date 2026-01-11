@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import { Search, Package, FileDown, FileText, BarChartBig } from 'lucide-react';
 import { jsPDF } from 'jspdf';
-import autoTable from 'jspdf-autotable';
+
 import {
   BarChart,
   Bar,
@@ -75,16 +75,55 @@ const ProductReportPage: React.FC = () => {
     link.click();
   };
 
-  const exportPDF = () => {
-    const doc = new jsPDF();
-    doc.text('Product Report', 14, 16);
-    autoTable(doc, {
-      startY: 20,
-      head: [['Product ID', 'Name', 'Category', 'Sold', 'Revenue', 'Stock']],
-      body: filtered.map((p) => [p.id, p.name, p.category, p.sold, `$${p.revenue}`, p.stock]),
-    });
-    doc.save('product_report.pdf');
-  };
+const exportPDF = () => {
+  const doc = new jsPDF('p', 'mm', 'a4');
+
+  let y = 15;
+
+  doc.setFontSize(18);
+  doc.text('Product Report', 14, y);
+
+  y += 8;
+  doc.setFontSize(10);
+  doc.text(`Generated: ${new Date().toLocaleString()}`, 14, y);
+
+  y += 10;
+
+  // Table Header
+  doc.setFontSize(11);
+  doc.text('ID', 14, y);
+  doc.text('Name', 35, y);
+  doc.text('Category', 85, y);
+  doc.text('Sold', 120, y);
+  doc.text('Revenue', 140, y);
+  doc.text('Stock', 170, y);
+
+  y += 2;
+  doc.line(14, y, 195, y);
+  y += 6;
+
+  doc.setFontSize(9);
+
+  filtered.forEach((p) => {
+    doc.text(p.id, 14, y);
+    doc.text(p.name.slice(0, 20), 35, y);
+    doc.text(p.category, 85, y);
+    doc.text(String(p.sold), 120, y);
+    doc.text(`$${p.revenue}`, 140, y);
+    doc.text(String(p.stock), 170, y);
+
+    y += 6;
+
+    // Page break
+    if (y > 270) {
+      doc.addPage();
+      y = 20;
+    }
+  });
+
+  doc.save('product_report.pdf');
+};
+
 
   return (
     <div className="p-6 min-h-screen">

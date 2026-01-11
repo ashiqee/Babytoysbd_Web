@@ -1,10 +1,11 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { HeartIcon as HeartSolid } from '@heroicons/react/24/solid';
-import { TrashIcon } from '@heroicons/react/24/outline';
+
+
 import Link from 'next/link';
 import AddToCartButton from '../../_components/pages/products/AddToCartButton';
 import { Types } from 'mongoose';
+import { Heart, Trash } from 'lucide-react';
 
 // Define TypeScript interfaces
 interface Product {
@@ -143,7 +144,7 @@ export default function WishlistPage() {
     <div className="container mx-auto px-4 py-20">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center">
-          <HeartSolid className="h-8 w-8 text-red-500 mr-2" />
+          <Heart className="h-8 w-8 text-red-500 mr-2" />
           My Wishlist
         </h1>
         {wishlistItems.length > 0 && (
@@ -151,7 +152,7 @@ export default function WishlistPage() {
             onClick={clearWishlist}
             className="flex items-center text-red-600 hover:text-red-800 transition-colors"
           >
-            <TrashIcon className="h-5 w-5 mr-1" />
+            <Trash className="h-5 w-5 mr-1" />
             Clear All
           </button>
         )}
@@ -159,7 +160,7 @@ export default function WishlistPage() {
       
       {wishlistItems.length === 0 ? (
         <div className="text-center py-16 bg-gray-50 rounded-lg">
-          <HeartSolid className="h-16 w-16 text-gray-300 mx-auto mb-4" />
+          <Heart className="h-16 w-16 text-gray-300 mx-auto mb-4" />
           <h2 className="text-xl font-semibold text-gray-700 mb-2">Your wishlist is empty</h2>
           <p className="text-gray-600 mb-6">Add items to your wishlist by clicking the heart icon on any product.</p>
           <Link 
@@ -186,7 +187,7 @@ export default function WishlistPage() {
                   className="absolute top-3 right-3 bg-white rounded-full p-2 shadow-md text-red-500 hover:bg-red-50 transition-colors"
                   title="Remove from wishlist"
                 >
-                  <TrashIcon className="h-5 w-5" />
+                  <Trash className="h-5 w-5" />
                 </button>
                 {item.product.discountPercentage > 0 && (
                   <span className="absolute top-3 left-3 bg-red-500 text-white px-2 py-1 rounded-md text-sm font-semibold">

@@ -5,8 +5,7 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 
 
-import { StarIcon, ShoppingCartIcon, HeartIcon } from '@heroicons/react/24/outline';
-import { StarIcon as SolidStarIcon } from '@heroicons/react/24/solid';
+
 
 import { dbConnect } from '@/lib/db/dbConnect';
 import { Product } from '@/lib/models/products/Product';
@@ -25,6 +24,7 @@ import ProductBottomMenu from '../../_components/shared/ProductBottomMenu';
 import GA4ViewContent from '../../_components/tracking/GA4ViewContent';
 import CartSidebar from '../../_components/shared/CartSideBar';
 import { trackViewItem } from '@/lib/db/GTM/gtm';
+import { Star, StarOff } from 'lucide-react';
 
 interface ProductPageProps {
 
@@ -151,9 +151,9 @@ export default async function ProductPage(context: ProductPageProps) {
                 <div className="flex text-yellow-400 mr-2">
                   {[...Array(5)].map((_, i) => (
                     i < 4 ? (
-                      <SolidStarIcon key={i} className="h-5 w-5" />
+                      <StarOff key={i} className="h-5 w-5" />
                     ) : (
-                      <StarIcon key={i} className="h-5 w-5" />
+                      <Star key={i} className="h-5 w-5" />
                     )
                   ))}
                 </div>

@@ -2,8 +2,8 @@
 
 import { useWishlist } from "@/app/hooks/useWishlist";
 
-import { HeartIcon as HeartOutline } from "@heroicons/react/24/outline";
-import { HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
+import { Heart, HeartCrack } from "lucide-react";
+
 import { Types } from "mongoose";
 
 
@@ -40,9 +40,9 @@ export default function WishlistButton({ product }: WishlistButtonProps) {
       {isLoading ? (
         <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-gray-400"/>
       ) : isInWishlist ? (
-        <HeartSolid className="h-7 w-7 font-extrabold" fontSize={20} />
+        <Heart className="h-7 w-7 font-extrabold" fontSize={20} />
       ) : (
-        <HeartOutline className="h-7 w-7 font-extrabold" fontWeight={800} fontSize={30} />
+        <HeartCrack className="h-7 w-7 font-extrabold" fontWeight={800} fontSize={30} />
       )}
       {/* Optional: show count */}
       {/* {wishlistCount > 0 && (

@@ -2,21 +2,14 @@
 // components/CartModal.tsx
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  XMarkIcon,
-  ShoppingBagIcon,
-  PlusIcon,
-  MinusIcon,
-  TrashIcon,
-  TruckIcon,
-  ArrowRightIcon,
-} from "@heroicons/react/24/outline";
+
 import Image from "next/image";
 import { useCarts } from "@/app/hooks/usecarts";
 import { toast } from "react-hot-toast";
-import { LockIcon } from "lucide-react";
+import { LockIcon, Minus, Plus, ShoppingBag, Trash } from "lucide-react";
 import ShimmerButton from "../_ui/ShimmerButton";
 import { ScrollShadow } from "@heroui/react";
+import { FaMarker } from "react-icons/fa";
 
 interface CartModalProps {
   isOpen: boolean;
@@ -141,7 +134,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
             <div className="sticky top-0 bg-white dark:bg-gray-800 border-b dark:border-gray-700 p-4 md:p-6 rounded-t-2xl z-10">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <ShoppingBagIcon className="h-8 w-8 text-blue-600 mr-3" />
+                  <ShoppingBag className="h-8 w-8 text-blue-600 mr-3" />
                   <div>
                     <h2 className="md:text-2xl  font-bold text-gray-900 dark:text-white">
                       Your Shopping Cart
@@ -156,7 +149,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                   onClick={onClose}
                   className="p-2 rounded-full z-50 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                 >
-                  <XMarkIcon className="h-6 w-6  text-gray-500 dark:text-gray-400" />
+                  <FaMarker className="h-6 w-6  text-gray-500 dark:text-gray-400" />
                 </button>
               </div>
             </div>
@@ -166,7 +159,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
               {items.length === 0 ? (
                 <div className="text-center py-12">
                   <div className="mx-auto h-16 w-16 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-700 mb-4">
-                    <ShoppingBagIcon className="h-8 w-8 text-gray-400 dark:text-gray-500" />
+                    <ShoppingBag className="h-8 w-8 text-gray-400 dark:text-gray-500" />
                   </div>
                   <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
                     Your cart is empty
@@ -250,7 +243,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                               }
                               disabled={item.quantity <= 1}
                             >
-                              <MinusIcon className="h-4 w-4" />
+                              <Minus className="h-4 w-4" />
                             </button>
                             <span className="px-2 py-1 text-sm font-medium">
                               {item.quantity}
@@ -261,7 +254,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                                 updateQuantity(item._id, item.quantity + 1)
                               }
                             >
-                              <PlusIcon className="h-4 w-4" />
+                              <Plus className="h-4 w-4" />
                             </button>
                           </div>
 
@@ -270,7 +263,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                             onClick={() => removeItem(item._id)}
                             className="p-1.5 absolute bottom-8 -right-2 text-gray-500 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-full transition-colors"
                           >
-                            <TrashIcon className="h-4 w-4" />
+                            <Trash className="h-4 w-4" />
                           </button>
                         </div>
                       </motion.div>
@@ -391,7 +384,7 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
                   {/* Security & Shipping Info */}
                   <div className="mt-6 flex items-center justify-center text-sm text-gray-500 dark:text-gray-400">
                     <div className="flex items-center mr-4">
-                      <TruckIcon className="h-4 w-4 mr-1" />
+                      <Trash className="h-4 w-4 mr-1" />
                       <span>Fast Delivery</span>
                     </div>
                     <div className="flex items-center">

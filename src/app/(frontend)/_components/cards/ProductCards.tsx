@@ -3,8 +3,8 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { StarIcon, ShoppingCartIcon } from '@heroicons/react/24/outline';
-import { Image as ImageICON } from 'lucide-react';
+
+import { Image as ImageICON, ShoppingCart, Star } from 'lucide-react';
 import WishlistButton from '../pages/products/WishListBtn';
 import AddToCartButton from '../pages/products/AddToCartButton';
 import { TProduct } from '@/app/hooks/useProducts';
@@ -53,7 +53,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           whileTap={{ scale: 0.9 }}
           className="absolute bottom-3 right-3 bg-pink-500 text-white p-2 rounded-full shadow-lg opacity-0 hover:opacity-100 transition-opacity duration-300"
         >
-          <ShoppingCartIcon className="h-5 w-5" />
+          <ShoppingCart className="h-5 w-5" />
         </motion.button>
       </div>
       
@@ -70,7 +70,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             <div className="flex items-center">
               <div className="flex text-yellow-400">
                 {[...Array(5)].map((_, i) => (
-                  <StarIcon key={i} className={`h-4 w-4 ${i < 3 ? 'fill-current' : ''}`} />
+                  <Star key={i} className={`h-4 w-4 ${i < 3 ? 'fill-current' : ''}`} />
                 ))}
               </div>
               <span className="text-gray-500 text-[11px] ml-1">(0)</span>

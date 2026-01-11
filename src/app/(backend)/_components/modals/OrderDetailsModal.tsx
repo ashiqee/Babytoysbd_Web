@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import jsPDF from "jspdf";
-import autoTable from "jspdf-autotable";
-import { OrderProduct } from "../../_lib/type";
+
 import { Eye, Download, Printer, Copy } from "lucide-react";
 
 interface OrderDetailsModalProps {
@@ -16,33 +15,62 @@ const OrderDetailsModal: React.FC<OrderDetailsModalProps> = ({
   const [viewInvoice, setViewInvoice] = useState(false);
   const printRef = useRef<HTMLDivElement>(null);
 
-  const handleDownloadInvoice = () => {
-    const doc = new jsPDF();
-    doc.setFontSize(18);
-    doc.text("Invoice", 14, 22);
-    doc.setFontSize(11);
-    doc.text(`Order ID: ${order?.orderId}`, 14, 32);
-    doc.text(`Date: ${new Date(order?.createdAt).toLocaleString()}`, 14, 38);
-    doc.text(`Customer: ${order?.customer}`, 14, 44);
-    doc.text(`Payment Status: ${order?.paymentStatus}`, 14, 50);
-    doc.text(`Delivery Number: ${order?.deliveryNumber}`, 14, 56);
-    doc.text(`Order Status: ${order?.orderStatus}`, 14, 62);
+const handleDownloadInvoice = () => {
+  const doc = new jsPDF();
+  let y = 20;
 
-    autoTable(doc, {
-      startY: 70,
-      head: [["Product", "Size", "Qty", "Status"]],
-      body: order?.products.map((p: any) => [
-        p.name,
-        p.size,
-        p.quantity.toString(),
-        p.status,
-      ]),
-    });
+  doc.setFontSize(18);
+  doc.text("INVOICE", 14, y);
+  y += 10;
 
-    const finalY = doc.lastAutoTable?.finalY ?? 70;
-    doc.text(`Total: $${order?.total}`, 14, finalY + 10);
-    doc.save(`Invoice_${order?.orderId}.pdf`);
-  };
+  doc.setFontSize(11);
+  doc.text(`Order ID: ${order?.orderId}`, 14, y); y += 6;
+  doc.text(`Date: ${new Date(order?.createdAt).toLocaleString()}`, 14, y); y += 6;
+  doc.text(`Customer: ${order?.customer?.fullName}`, 14, y); y += 6;
+  doc.text(`Mobile: ${order?.customer?.mobileNumber}`, 14, y); y += 6;
+  doc.text(`Payment Status: ${order?.paymentStatus}`, 14, y); y += 6;
+  doc.text(`Order Status: ${order?.orderStatus}`, 14, y); y += 10;
+
+  // -------- Table Header --------
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "bold");
+
+  doc.text("Product", 14, y);
+  doc.text("Size", 90, y);
+  doc.text("Qty", 120, y);
+  doc.text("Status", 150, y);
+
+  y += 4;
+  doc.line(14, y, 195, y);
+  y += 6;
+
+  doc.setFont("helvetica", "normal");
+
+  // -------- Table Body --------
+  order?.products?.forEach((p: any) => {
+    if (y > 270) {
+      doc.addPage();
+      y = 20;
+    }
+
+    doc.text(p.name, 14, y);
+    doc.text(p.size || "-", 90, y);
+    doc.text(String(p.quantity), 120, y);
+    doc.text(p.status, 150, y);
+
+    y += 8;
+  });
+
+  y += 6;
+  doc.line(14, y, 195, y);
+  y += 10;
+
+  doc.setFont("helvetica", "bold");
+  doc.text(`Total: ৳${order?.total}`, 14, y);
+
+  doc.save(`Invoice_${order?.orderId}.pdf`);
+};
+
 
   const handlePrint = () => {
     if (!printRef.current) return;

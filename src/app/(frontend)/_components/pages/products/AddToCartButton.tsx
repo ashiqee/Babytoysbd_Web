@@ -1,17 +1,13 @@
 // components/AddToCartButton.tsx
 "use client";
 import { useState, useEffect } from "react";
-import {
-  ShoppingCartIcon,
-  PlusIcon,
-  MinusIcon,
-} from "@heroicons/react/24/outline";
+
 import { motion } from "framer-motion";
 import { TProduct } from "@/app/hooks/useProducts";
 import { useCarts } from "@/app/hooks/usecarts";
 import CartModal from "../../_modals/CartModal";
 import { toast } from "react-hot-toast";
-import { Trash } from "lucide-react";
+import { Minus, Plus, ShoppingCart, Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Popover, Tooltip } from "@heroui/react";
 
@@ -94,7 +90,7 @@ export default function AddToCartButton({
 
       toast.success(
         <div className="flex items-center">
-          <ShoppingCartIcon className="h-5 w-5 mr-2" />
+          <ShoppingCart className="h-5 w-5 mr-2" />
           <span>
             Added {quantity} {quantity === 1 ? "item" : "items"} to cart
           </span>
@@ -192,7 +188,7 @@ export default function AddToCartButton({
               onClick={() => handleQuantityChange(quantity - 1)}
               disabled={quantity <= 1 || isAdding}
             >
-              <MinusIcon className="h-4 w-4" />
+              <Minus className="h-4 w-4" />
             </button>
             <span className="px-3 dark:text-black py-2 w-12 text-center">
               {quantity}
@@ -202,7 +198,7 @@ export default function AddToCartButton({
               onClick={() => handleQuantityChange(quantity + 1)}
               disabled={isAdding}
             >
-              <PlusIcon className="h-4 w-4" />
+              <Plus className="h-4 w-4" />
             </button>
           </div>
         )}
@@ -220,7 +216,7 @@ export default function AddToCartButton({
               transform hover:scale-105 active:scale-95 transition-all duration-300
               overflow-hidden group"
                 >
-                  <ShoppingCartIcon className="h-5 w-5 mr-2" />
+                  <ShoppingCart className="h-5 w-5 mr-2" />
                   In Cart
                   {cartQuantity > 0 && (
                     <span className="ml-1 bg-green-700 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
@@ -238,7 +234,7 @@ export default function AddToCartButton({
                     onClick={() => handleQuantityChange(quantity - 1)}
                     disabled={isAdding}
                   >
-                    <MinusIcon className="h-4 w-4" />
+                    <Minus className="h-4 w-4" />
                   </button>
                   <span className="px-2 py-1.5 w-10 text-center">
                     {cartQuantity}
@@ -248,7 +244,7 @@ export default function AddToCartButton({
                     onClick={handleAddOneMore}
                     disabled={isAdding}
                   >
-                    <PlusIcon className="h-4 w-4" />
+                    <Plus className="h-4 w-4" />
                   </button>
                   <button
                     className="px-2 py-1.5 text-gray-600 hover:bg-gray-100"
@@ -299,7 +295,7 @@ export default function AddToCartButton({
                   </>
                 ) : (
                   <>
-                    <ShoppingCartIcon className="h-5 w-5 mr-2" />
+                    <ShoppingCart className="h-5 w-5 mr-2" />
                     Add to Cart
                   </>
                 )}
@@ -349,7 +345,7 @@ export default function AddToCartButton({
                 <Tooltip
                   content={`${isInCart ? "Remove from cart" : inStock ? "Add to cart" : "Out of stock"}`}
                 >
-                  <ShoppingCartIcon className="h-5 w-5 " />
+                  <ShoppingCart className="h-5 w-5 " />
                 </Tooltip>
                 { mounted && isInCart && (
                   <p className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">

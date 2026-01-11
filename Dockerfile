@@ -13,7 +13,7 @@ RUN npm run build
 # ---------- Runtime Stage ----------
 FROM node:20-alpine
 
-WORKDIR /app
+WORKDIR /appnp
 
 ENV NODE_ENV=production
 ENV PORT=3002
