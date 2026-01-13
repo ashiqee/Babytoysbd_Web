@@ -15,7 +15,7 @@ interface ProductCardProps {
   product: TProduct;
 }
 
-const ProductCard = ({ product }: ProductCardProps) => {
+const ProductCards = ({ product }: ProductCardProps) => {
      // Convert string prices to numbers for calculations
   const regularPrice = parseFloat(product.regularPrice as string) || 0;
   const salePrice = product.salePrice ? parseFloat(product.salePrice as string) : 0;
@@ -32,14 +32,14 @@ const ProductCard = ({ product }: ProductCardProps) => {
       className=" backdrop-blur-md  font-montserrat rounded-md shadow-lg overflow-hidden border border-gray-100/25  transition-all duration-300 h-full flex flex-col"
     >
       {/* Product Image Area */}
-      <div className="relative h-fit bg-gradient-to-br from-yellow-50/5 to-pink-50/5 overflow-hidden">
+      <div className="relative h-fit bg-linear-to-br from-yellow-50/5 to-pink-50/5 overflow-hidden">
        
      
        
         <ProductImageGallery product={product} />
         {/* Discount Badge */}
         {discountPercentage > 0 && (
-          <div className="absolute top-2 left-2 bg-gradient-to-r from-red-600 to-red-500 text-white px-2 py-1 rounded-full text-xs font-bold shadow-lg">
+          <div className="absolute top-2 left-2 bg-linear-to-r from-red-600 to-red-500 text-white px-2 py-1 rounded-full text-xs font-bold shadow-lg">
             {discountPercentage}% OFF
           </div>
         )}
@@ -58,8 +58,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
       </div>
       
       {/* Product Info Area */}
-      <div className="p-2 flex-grow flex flex-col">
-        <div className="flex-grow">
+      <div className="p-2 grow flex flex-col">
+        <div className="grow">
             <Link  href={`/${product.slug}`}>
           <h3 className="font-normal md:font-medium  mb-1 line-clamp-2 text-[13px]">{product.productName}</h3>
             </Link>
@@ -96,11 +96,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
         {/* Button Area */}
         <div className="flex items-center justify-between space-x-2">
             
-          <Link href={`/${product.slug}`} className="  flex-grow">
+          <Link href={`/${product.slug}`} className="  grow">
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className="w-full  text-xs py-2.5 bg-gradient-to-r from-yellow-400 to-yellow-600 text-slate-800 rounded-lg font-medium hover:opacity-90 transition-opacity duration-300"
+              className="w-full  text-xs py-2.5 bg-linear-to-r from-yellow-400 to-yellow-600 text-slate-800 rounded-lg font-medium hover:opacity-90 transition-opacity duration-300"
             >
               View Details
             </motion.button>
@@ -117,4 +117,4 @@ const ProductCard = ({ product }: ProductCardProps) => {
   );
 };
 
-export default ProductCard;
+export default ProductCards;

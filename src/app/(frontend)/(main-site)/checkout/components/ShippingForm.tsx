@@ -306,7 +306,7 @@ const ShippingForm: React.FC<ShippingFormProps> = ({
         </div>
         {/* Submit */}
         <div className="flex justify-end pt-6">
-          <button type="submit" className="px-6 py-2 bg-primary text-white rounded">
+          <button type="submit" className="px-6 py-2  bg-yellow-500 text-black rounded">
             {currentLanguage === "en" ? "Continue to Payment" : "পেমেন্টে এগিয়ে যান"}
           </button>
         </div>
